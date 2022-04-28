@@ -1,13 +1,33 @@
 // Your custom styles:
 
+.bb {
+  border-bottom: 1px solid #ebeef5;
+}
+
 .text-yellow {
-  color: $main-color-yellow;
+  color: $main-color-yellow !important;
 }
 .text-blue {
-  color: $main-color-blue;
+  color: $main-color-blue !important;
 }
 .text-silver {
-  color: $main-color-silver;
+  color: $main-color-silver !important;
+}
+.text-milk {
+  color: $main-color-milk !important;
+}
+
+.bg-yellow {
+  background-color: $main-color-yellow !important;
+}
+.bg-blue {
+  background-color: $main-color-blue !important;
+}
+.bg-silver {
+  background-color: $main-color-silver !important;
+}
+.bg-milk {
+  background-color: $main-color-milk !important;
 }
 
 a {
@@ -57,6 +77,14 @@ a {
 
 .el-button {
   height: 40px;
+}
+
+table {
+  th {
+    &.el-table__cell {
+      font-weight: 500;
+    }
+  }
 }
 
 .el-table {
@@ -123,5 +151,18 @@ a {
   }
   &:active {
     border-color: #73767a;
+  }
+}
+
+.btn-text {
+  padding: 0;
+  height: initial;
+
+  & +.el-button {
+    margin-left: 0;
+  }
+
+  &:hover {
+    opacity: .8;
   }
 }

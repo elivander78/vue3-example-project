@@ -128,9 +128,89 @@
                 </el-table>
               </div>
               <div class="data-section w-full mb-3">
-                <el-table :data="lowPriceData" class="low-price-table">
-                  <el-table-column prop="" label="Календарь низких цен"/>
-                </el-table>
+                <div class="el-table--fit el-table--enable-row-hover el-table el-table--layout-fixed low-price-table is-scrolling-none">
+                  <div class="el-table__inner-wrapper">
+                    <div class="el-table__header-wrapper">
+                      <table class="el-table__header">
+                        <colgroup><col name="el-table_2_column_5" width="1000"></colgroup>
+                        <thead class="">
+                          <tr class="">
+                            <th class="el-table_2_column_5 is-leaf el-table__cell" colspan="1" rowspan="1">
+                              <div class="cell">Календарь низких цен</div>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                    <div class="el-table__body-wrapper">
+                      <table class="aln-table w-full">
+                        <thead class="aln-table__header">
+                          <tr>
+                            <th class="el-table__cell bg-milk bb w-28">
+                              <div class="cell text-left">Ночей</div>
+                            </th>
+                            <th class="el-table__cell bg-milk bb grow">
+                              <div class="cell text-center">Дата отправления</div>
+                            </th>
+                            <th class="el-table__cell bg-milk bb w-28">
+                              <div class="cell">
+                                <div class="flex items-center justify-center">
+                                  <el-button class="btn-text" type="text">
+                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.25 7.66589L3.25 16.3349C3.25 19.3549 5.389 21.2499 8.416 21.2499L16.584 21.2499C19.611 21.2499 21.75 19.3649 21.75 16.3349L21.75 7.66589C21.75 4.63589 19.611 2.74989 16.584 2.74989L8.416 2.74989C5.389 2.74989 3.25 4.63589 3.25 7.66589Z" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M8.41394 11.9999L16.5859 11.9999" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M12.1777 15.7479L8.41373 11.9999L12.1777 8.25189" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  </el-button>
+                                  <el-button class="btn-text ml-1" type="text">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1393 16.3341V7.66509C21.1393 4.64509 19.0126 2.75009 16.003 2.75009H7.88191C4.87231 2.75009 2.74561 4.63509 2.74561 7.66509L2.74561 16.3341C2.74561 19.3641 4.87231 21.2501 7.88191 21.2501H16.003C19.0126 21.2501 21.1393 19.3641 21.1393 16.3341Z" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M16.0049 12.0001H7.87988" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M12.2629 8.25209L16.0053 12.0001L12.2629 15.7481" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  </el-button>
+                                </div>
+                              </div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="aln-table__body">
+                          <tr v-for="item of lowPriceData" :key="item.id">
+                            <td class="el-table__cell bg-milk w-28">
+                              <div class="cell text-center font-medium">
+                                {{ item.days }}
+                              </div>
+                            </td>
+                            <td v-if="item.amount" class="el-table__cell" colspan="2">
+                              <div class="cell">
+                                {{ item.amount }}
+                              </div>
+                            </td>
+                            <td v-else class="el-table__cell" colspan="2">
+                              <div class="cell">
+                                <!-- <span class="inline-block text-center font-medium border-2 border-dashed border-black px-3">{{ item.amount }}</span> -->
+                                <div class="flex items-center justify-between">
+                                  <span
+                                    v-for="(innerItem, index) of item.dateDeparture"
+                                    :key="`${innerItem}_${index}`"
+                                    class="mx-4"
+                                  >
+                                    {{ innerItem }}
+                                  </span>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="el-table__cell bg-milk" colspan="3">
+                              <div class="cell text-center font-medium">USD</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="data-section w-full mt-5 mb-3">
                 <div class="data-section__title">Проживание</div>
@@ -451,7 +531,42 @@ export default defineComponent({
       }
     ],
     contentFormData: {},
-    lowPriceData: [],
+    lowPriceData: [
+      {
+        id: 1,
+        days: null,
+        dateDeparture: [
+          '07 Май, Сб',
+          '08 Май, Вс',
+          '09 Май, Пн',
+          '10 Май, Вт',
+          '11 Май, Ср	',
+          '12 Май, Чт',
+          '13 Май, Пт'
+        ]
+      },
+      {
+        id: 2,
+        days: 8,
+        dateDeparture: null
+      },
+      {
+        id: 3,
+        days: 9,
+        dateDeparture: null
+      },
+      {
+        id: 4,
+        days: 10,
+        dateDeparture: null,
+        amount: 5000
+      },
+      {
+        id: 5,
+        days: 11,
+        dateDeparture: null
+      }
+    ],
     accommodationData: [
       {
         id: 1,
