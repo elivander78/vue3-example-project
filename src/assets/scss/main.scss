@@ -1,0 +1,158 @@
+@import 'utils/libs';
+@import 'utils/vars';
+@import 'utils/mixins';
+@import 'utils/fonts';
+@import 'utils/reset';
+
+html {
+  line-height: $mainLineHeight;
+  font-size: $mainFontSize;
+  color: $mainFontColor;
+  height: 100%;
+
+  @media screen and (max-width: $desktopWidth) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: $tableWidth) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFont;
+  font-size: $mainFontSize;
+  font-weight: $mainFontWeight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+b {
+  display: inline-block;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+section, .section {
+  position: relative;
+  padding: 40px 0;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    padding: 36px 0;
+  }
+  @media screen and (max-width: $tableWidth) {
+    padding: 28px 0;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    padding: 20px 0;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+.main {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: calc(180px + 40px);
+
+  h1 {
+    color: #fff;
+  }
+}
+
+.container {
+  width: 100%;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  margin: 0 auto;
+  max-width: $lgDesktopWidth;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    max-width: $tableWidth;
+  }
+  @media screen and (max-width: $tableWidth) {
+    max-width: $phoneWidth;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    max-width: $smPhoneWidth;
+  }
+}
+
+.data-section {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #E4E7ED;
+  border-radius: 5px;
+  padding: 24px 24px;
+
+
+  &__title {
+    position: absolute;
+    background-color: $main-color-blue;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #fff;
+    padding: 4px 8px;
+    top: 0;
+    left: 12px;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  .el-table {
+    th {
+      &.el-table__cell {
+        background-color: transparent;
+      }
+    }
+    tr {
+      background-color: transparent;
+    }
+  }
+}
+
+// Modules:
+@import 'common/main';

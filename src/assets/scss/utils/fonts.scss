@@ -1,0 +1,20 @@
+@import 'mixins';
+
+// Base Montserrat:
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Thin', 100);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-ExtraLight', 200);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Light', 300);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Regular', 400);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Medium', 500);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-SemiBold', 600);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Bold', 700);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-ExtraBold', 800);
+@include font-face('Montserrat', '../fonts/Montserrat/Montserrat-Black', 900);
+
+// Additionally NotoSansSC:
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Thin', 100);
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Light', 300);
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Regular', 400);
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Medium', 500);
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Bold', 700);
+//@include font-face('NotoSansSC', '../fonts/NotoSansSC/NotoSansSC-Black', 900);

@@ -1,0 +1,127 @@
+// Your custom styles:
+
+.text-yellow {
+  color: $main-color-yellow;
+}
+.text-blue {
+  color: $main-color-blue;
+}
+.text-silver {
+  color: $main-color-silver;
+}
+
+a {
+  &.hover-underline {
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.el-form-item__label {
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.el-checkbox__input {
+  &.is-checked {
+    & +.el-checkbox__label {
+      color: $neutral-regular; 
+    }
+  }
+}
+
+.el-form-item {
+  &.text-left {
+    .el-form-item__label {
+      text-align: left;
+    }
+  }
+  &.text-center {
+    .el-form-item__label {
+      text-align: center;
+    }
+  }
+  &.text-right {
+    .el-form-item__label {
+      text-align: right;
+    }
+  }
+}
+
+.el-input {
+  height: 40px;
+}
+
+.el-button {
+  height: 40px;
+}
+
+.el-table {
+  thead {
+    color: #3D3D3D;
+  }
+
+  .el-table {
+    &__cell {
+      padding: 12px 0;
+    }
+  }
+
+  .cell {
+    padding: 0 8px;
+  }
+}
+
+.el-button--large {
+  font-size: 22px;
+  height: 56px;
+  padding: 12px 36px;
+}
+
+.btn-yellow {
+  background-color: $main-color-yellow;
+  border-color: $main-color-yellow;
+  color: $main-color-blue;
+
+  &:hover, &:focus {
+    background-color: $main-color-yellow-light;
+    border-color: $main-color-yellow;
+    color: $main-color-blue;
+  }
+  &:active {
+    border-color: #b88230;
+  }
+}
+
+.btn-blue {
+  background-color: $main-color-blue;
+  border-color: $main-color-blue;
+  color: #fff;
+
+  &:hover, &:focus {
+    background-color: $main-color-blue-light;
+    border-color: $main-color-blue;
+    color: #fff;
+  }
+  &:active {
+    border-color: #337ecc;
+  }
+}
+
+.btn-silver {
+  background-color: $main-color-silver;
+  border-color: $main-color-silver;
+  color: #fff;
+
+  &:hover, &:focus {
+    background-color: $main-color-silver-light;
+    border-color: $main-color-silver;
+    color: #fff;
+  }
+  &:active {
+    border-color: #73767a;
+  }
+}
