@@ -1,13 +1,33 @@
 // Your custom styles:
 
+.bb {
+  border-bottom: 1px solid #ebeef5;
+}
+
 .text-yellow {
-  color: $main-color-yellow;
+  color: $main-color-yellow !important;
 }
 .text-blue {
-  color: $main-color-blue;
+  color: $main-color-blue !important;
 }
 .text-silver {
-  color: $main-color-silver;
+  color: $main-color-silver !important;
+}
+.text-milk {
+  color: $main-color-milk !important;
+}
+
+.bg-yellow {
+  background-color: $main-color-yellow !important;
+}
+.bg-blue {
+  background-color: $main-color-blue !important;
+}
+.bg-silver {
+  background-color: $main-color-silver !important;
+}
+.bg-milk {
+  background-color: $main-color-milk !important;
 }
 
 a {
@@ -28,7 +48,7 @@ a {
 .el-checkbox__input {
   &.is-checked {
     & +.el-checkbox__label {
-      color: $neutral-regular; 
+      color: $neutral-regular;
     }
   }
 }
@@ -53,10 +73,18 @@ a {
 
 .el-input {
   height: 40px;
+
+  @media screen and (max-width: $phoneWidth) {
+    height: 36px;
+  }
 }
 
-.el-button {
-  height: 40px;
+table {
+  th {
+    &.el-table__cell {
+      font-weight: 500;
+    }
+  }
 }
 
 .el-table {
@@ -75,10 +103,45 @@ a {
   }
 }
 
+.aln-table {
+  overflow-x: auto;
+
+  .el-table__inner-wrapper {
+    min-width: 860px;
+  }
+}
+
+.el-button {
+  height: 40px;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 12px;
+    height: 36px;
+  }
+}
+
 .el-button--large {
   font-size: 22px;
   height: 56px;
   padding: 12px 36px;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    font-size: 18px;
+    height: 52px;
+    padding: 10px 30px;
+  }
+  @media screen and (max-width: $smTableWidth) {
+    font-size: 16px;
+    height: 48px;
+    padding: 8px 24px;
+  }
+  @media screen and (max-width: $smTableWidth) {
+    font-size: 15px;
+    height: 45px;
+  }
 }
 
 .btn-yellow {
@@ -123,5 +186,18 @@ a {
   }
   &:active {
     border-color: #73767a;
+  }
+}
+
+.btn-text {
+  padding: 0;
+  height: initial;
+
+  & +.el-button {
+    margin-left: 0;
+  }
+
+  &:hover {
+    opacity: .8;
   }
 }
