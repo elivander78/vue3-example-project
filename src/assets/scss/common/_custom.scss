@@ -48,7 +48,7 @@ a {
 .el-checkbox__input {
   &.is-checked {
     & +.el-checkbox__label {
-      color: $neutral-regular; 
+      color: $neutral-regular;
     }
   }
 }
@@ -73,10 +73,10 @@ a {
 
 .el-input {
   height: 40px;
-}
 
-.el-button {
-  height: 40px;
+  @media screen and (max-width: $phoneWidth) {
+    height: 36px;
+  }
 }
 
 table {
@@ -103,10 +103,45 @@ table {
   }
 }
 
+.aln-table {
+  overflow-x: auto;
+
+  .el-table__inner-wrapper {
+    min-width: 860px;
+  }
+}
+
+.el-button {
+  height: 40px;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 12px;
+    height: 36px;
+  }
+}
+
 .el-button--large {
   font-size: 22px;
   height: 56px;
   padding: 12px 36px;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    font-size: 18px;
+    height: 52px;
+    padding: 10px 30px;
+  }
+  @media screen and (max-width: $smTableWidth) {
+    font-size: 16px;
+    height: 48px;
+    padding: 8px 24px;
+  }
+  @media screen and (max-width: $smTableWidth) {
+    font-size: 15px;
+    height: 45px;
+  }
 }
 
 .btn-yellow {

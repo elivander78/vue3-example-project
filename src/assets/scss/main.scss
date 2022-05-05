@@ -44,6 +44,16 @@ h1 {
   font-weight: 600;
   line-height: 1.6;
   letter-spacing: 0.05em;
+
+  @media screen and (max-width: $tableWidth) {
+    font-size: 30px;
+  }
+  @media screen and (max-width: $smTableWidth) {
+    font-size: 28px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 26px;
+  }
 }
 
 strong {
@@ -65,20 +75,20 @@ ul, li {
   list-style-type: none;
 }
 
-section, .section {
-  position: relative;
-  padding: 40px 0;
+// section, .section {
+//   position: relative;
+//   padding: 40px 0;
 
-  @media screen and (max-width: $smDesktopWidth) {
-    padding: 36px 0;
-  }
-  @media screen and (max-width: $tableWidth) {
-    padding: 28px 0;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    padding: 20px 0;
-  }
-}
+//   @media screen and (max-width: $smDesktopWidth) {
+//     padding: 36px 0;
+//   }
+//   @media screen and (max-width: $tableWidth) {
+//     padding: 30px 0;
+//   }
+//   @media screen and (max-width: $phoneWidth) {
+//     padding: 20px 0;
+//   }
+// }
 
 .wrapper {
   position: relative;
@@ -99,6 +109,19 @@ section, .section {
   h1 {
     color: #fff;
   }
+
+  @media screen and (max-width: $lgDesktopWidth) {
+    padding-top: calc(150px + 40px);
+  }
+  @media screen and (max-width: $smDesktopWidth) {
+    padding-top: calc(140px + 36px);
+  }
+  @media screen and (max-width: $tableWidth) {
+    padding-top: calc(140px + 30px);
+  }
+  @media screen and (max-width: $smTableWidth) {
+    padding-top: calc(190px + 30px);
+  }
 }
 
 .container {
@@ -110,13 +133,25 @@ section, .section {
   max-width: $lgDesktopWidth;
 
   @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
+    max-width: calc($tableWidth + 160px);
   }
   @media screen and (max-width: $tableWidth) {
+    max-width: $smTableWidth;
+  }
+  @media screen and (max-width: $smTableWidth) {
     max-width: $phoneWidth;
   }
   @media screen and (max-width: $phoneWidth) {
-    max-width: $smPhoneWidth;
+    max-width: calc($smPhoneWidth + 72px);
+  }
+  @media screen and (max-width: 414px) {
+    max-width: calc($smPhoneWidth + 40px);
+  }
+  @media screen and (max-width: 375px) {
+    max-width: calc($smPhoneWidth + 20px);
+  }
+  @media screen and (max-width: $smPhoneWidth) {
+    max-width: 300px;
   }
 }
 
@@ -141,7 +176,25 @@ section, .section {
     left: 12px;
     transform: translateY(-50%);
     z-index: 1;
+
+    @media screen and (max-width: $smDesktopWidth) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: $phoneWidth) {
+      max-width: 360px;
+      font-size: 12px;
+    }
+    @media screen and (max-width: 414px) {
+      max-width: 333px;
+    }
+    @media screen and (max-width: 375px) {
+      max-width: 315px;
+    }
+    @media screen and (max-width: $smPhoneWidth) {
+      max-width: 275px;
+    }
   }
+
   .el-table {
     th {
       &.el-table__cell {
