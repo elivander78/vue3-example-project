@@ -54,6 +54,9 @@ h1 {
   @media screen and (max-width: $phoneWidth) {
     font-size: 26px;
   }
+  @media screen and (max-width: $smPhoneWidth) {
+    font-size: 24px;
+  }
 }
 
 strong {
@@ -160,7 +163,7 @@ ul, li {
   background-color: #fff;
   border: 1px solid #E4E7ED;
   border-radius: 5px;
-  padding: 24px 24px;
+  padding: 24px;
 
 
   &__title {
@@ -204,6 +207,10 @@ ul, li {
     tr {
       background-color: transparent;
     }
+  }
+
+  @media screen and (max-width: $smPhoneWidth) {
+    padding: 16px;
   }
 }
 
