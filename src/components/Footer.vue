@@ -82,11 +82,13 @@ export default defineComponent({
     @media screen and (max-width: $phoneWidth) {
       flex-direction: column;
     }
+
     > li {
       @media screen and (max-width: $phoneWidth) {
         margin-bottom: 8px;
       }
     }
+
     a {
       display: inline-block;
       font-size: 15px;
@@ -100,6 +102,7 @@ export default defineComponent({
       }
     }
   }
+
   .copyright-text {
     font-size: 15px;
     line-height: 1.6;
@@ -107,10 +110,11 @@ export default defineComponent({
     color: #fff;
     mix-blend-mode: normal;
     opacity: .5;
-    
+
     @media screen and (max-width: $smTableWidth) {
       font-size: 13px;
     }
   }
 }
+
 </style>

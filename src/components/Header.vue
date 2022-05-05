@@ -95,6 +95,7 @@ export default defineComponent({
       }
     }
   }
+
   .nav-list {
     a {
       display: inline-block;
@@ -117,6 +118,7 @@ export default defineComponent({
           bottom: -12px;
           transform: translateX(-50%);
           transition: .3s;
+
           @media screen and (max-width: $smDesktopWidth) {
             width: 6px;
             height: 6px;
@@ -158,9 +160,11 @@ export default defineComponent({
       align-items: center;
       padding: 4px;
       transition: .3s;
+
       &:hover {
         opacity: .7;
       }
+
       svg {
         width: 32px;
         height: 32px;
@@ -208,4 +212,5 @@ export default defineComponent({
     height: 190px;
   }
 }
+
 </style>
