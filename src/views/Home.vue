@@ -323,18 +323,18 @@
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Дата рождения" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Действителен до" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
               </el-col>
@@ -404,18 +404,18 @@
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Дата рождения" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Действителен до" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
               </el-col>
@@ -433,9 +433,9 @@
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Дата рождения" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Серия паспорта" :label-width="150">
@@ -446,9 +446,9 @@
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Дата выдачи" :label-width="150">
                   <el-date-picker
+                      class="w-full w-sm-1/2"
                       type="date"
                       placeholder="ДД.ММ.ГГГГ"
-                      style="width: 50%"
                   />
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Код подразделения" :label-width="150">
@@ -500,8 +500,8 @@
             <div class="flex flex-col items-center">
               <div><b class="text-lg text-black">5000 USD</b></div>
               <el-form-item class="items-center text-left mt-3 mb-5">
-                <el-checkbox name="type" label="Подтверждаю, что являюсь частным лицом." />
-                <a href="#" class="text-yellow hover-underline ml-6 md:ml-2" style="line-height: 1.2">С договором согласен.</a>
+                <el-checkbox class="pp-text" name="type" label="Подтверждаю, что являюсь частным лицом." />
+                <a href="#" class="pp-text text-yellow hover-underline ml-6 md:ml-2 mt-1 sm:mt-0" style="line-height: 1.2">С договором согласен.</a>
               </el-form-item>
             </div>
             <div class="flex items-center justify-center">
@@ -670,7 +670,6 @@ export default defineComponent({
       border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
       transition: var(--el-transition-box-shadow);
       box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color)) inset;
-
       -webkit-appearance: none;
       //color: var(--el-input-text-color,var(--el-text-color-regular));
       color: #a5abb8;
@@ -678,7 +677,6 @@ export default defineComponent({
       line-height: 32px;
       outline: 0;
       border: none;
-
       span, i, svg {
         vertical-align: middle;
       }
@@ -688,24 +686,20 @@ export default defineComponent({
       }
     }
   }
-
   .el-button {
     font-weight: 500;
   }
 }
-
 .contentForm {
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .tariffs {
   max-width: 1420px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .tariff-card {
   position: relative;
   background-color: rgba(7, 87, 160, .8);
@@ -727,12 +721,10 @@ export default defineComponent({
     font-size: 96px;
     line-height: 1;
   }
-
   &__price {
     font-size: 48px;
     line-height: 50px;
     letter-spacing: -1.78px;
   }
 }
-
 </style>

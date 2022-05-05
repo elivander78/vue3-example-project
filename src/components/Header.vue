@@ -93,6 +93,10 @@ export default defineComponent({
         width: 159px;
         height: 47px;
       }
+      @media screen and (max-width: $smPhoneWidth) {
+        width: 149px;
+        height: 40px;
+      }
     }
   }
 
