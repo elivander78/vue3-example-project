@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <el-container class="container">
-      <template v-if="false">
+      <template v-if="tariff.show">
         <div class="tariffs w-full">
           <el-row :gutter="50">
             <el-col :sm="12">
@@ -10,7 +10,8 @@
                 <b class="tariff-card__title uppercase mb-2">Comfort</b>
                 <div class="tariff-card__price mb-4">5 000$</div>
                 <div class="flex items-end">
-                  <el-button class="btn-yellow mt-2" type="warning" size="large">Оформить</el-button>
+                  <el-button @click="onTariff('comfort')" class="btn-yellow mt-2" type="warning" size="large">Оформить
+                  </el-button>
                   <div class="flex items-center ml-auto">
                     <el-tooltip
                         placement="top"
@@ -40,7 +41,8 @@
                 <b class="tariff-card__title uppercase mb-2">Lux</b>
                 <div class="tariff-card__price mb-4">6 000$</div>
                 <div class="flex items-end">
-                  <el-button class="btn-yellow mt-2" type="warning" size="large">Оформить</el-button>
+                  <el-button @click="onTariff('lux')" class="btn-yellow mt-2" type="warning" size="large">Оформить
+                  </el-button>
                   <div class="flex items-center ml-auto">
                     <a href="#" class="mr-2">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -62,63 +64,57 @@
           </el-row>
         </div>
       </template>
-      <template v-if="true">
+      <template v-if="searchFormData.show">
         <h1 class="text-center capitalize mb-6">Umrangizni oson rejalashtiring!</h1>
         <el-form :model="searchFormData" ref="searchForm" class="searchForm flex flex-wrap w-full mb-8">
           <el-row :gutter="10">
             <el-col :sm="12" :lg="8">
               <el-form-item class="mb-3">
-                <el-date-picker class="grow" v-model="value1" type="date" placeholder="21 Апр 2022"/>
+                <el-date-picker class="grow" v-model="searchFormData.departureDate" type="date"
+                                placeholder="21 Апр 2022"/>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :lg="8">
               <el-form-item class="mb-3">
-                <el-date-picker class="grow" v-model="value1" type="date" placeholder="Дата возвращения"/>
+                <el-date-picker class="grow" v-model="searchFormData.arrivalDate" type="date"
+                                placeholder="Дата возвращения"/>
               </el-form-item>
             </el-col>
             <el-col :lg="8">
-              <el-form-item class="mb-3">
-                <el-dropdown trigger="click">
-                    <span class="el-dropdown-link">
-                      <span class="mr-auto">Dropdown List</span>
-                      <el-icon class="el-icon--right ml-3">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <ellipse cx="7.71929" cy="4.85203" rx="3.18535" ry="3.18535" stroke="#a5abb8"
-                                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M2.66676 12.4676C2.6659 12.2437 2.71598 12.0225 2.81321 11.8207C3.11832 11.2105 3.97873 10.8871 4.69269 10.7407C5.2076 10.6308 5.72962 10.5574 6.25486 10.521C7.22731 10.4356 8.20537 10.4356 9.17782 10.521C9.70302 10.5578 10.225 10.6312 10.74 10.7407C11.4539 10.8871 12.3144 11.18 12.6195 11.8207C12.815 12.2319 12.815 12.7093 12.6195 13.1205C12.3144 13.7613 11.4539 14.0542 10.74 14.1945C10.2257 14.3089 9.70348 14.3844 9.17782 14.4203C8.38633 14.4874 7.59114 14.4996 6.79796 14.4569C6.61489 14.4569 6.43793 14.4569 6.25486 14.4203C5.73117 14.3849 5.21096 14.3094 4.6988 14.1945C3.97873 14.0542 3.12442 13.7613 2.81321 13.1205C2.71648 12.9165 2.66645 12.6934 2.66676 12.4676Z"
-                                stroke="#a5abb8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </el-icon>
-                      <span class="ml-4">2</span>
-                      <el-icon class="el-icon--right ml-3">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <ellipse cx="7.71929" cy="4.85203" rx="3.18535" ry="3.18535" stroke="#a5abb8"
-                                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M2.66676 12.4676C2.6659 12.2437 2.71598 12.0225 2.81321 11.8207C3.11832 11.2105 3.97873 10.8871 4.69269 10.7407C5.2076 10.6308 5.72962 10.5574 6.25486 10.521C7.22731 10.4356 8.20537 10.4356 9.17782 10.521C9.70302 10.5578 10.225 10.6312 10.74 10.7407C11.4539 10.8871 12.3144 11.18 12.6195 11.8207C12.815 12.2319 12.815 12.7093 12.6195 13.1205C12.3144 13.7613 11.4539 14.0542 10.74 14.1945C10.2257 14.3089 9.70348 14.3844 9.17782 14.4203C8.38633 14.4874 7.59114 14.4996 6.79796 14.4569C6.61489 14.4569 6.43793 14.4569 6.25486 14.4203C5.73117 14.3849 5.21096 14.3094 4.6988 14.1945C3.97873 14.0542 3.12442 13.7613 2.81321 13.1205C2.71648 12.9165 2.66645 12.6934 2.66676 12.4676Z"
-                                stroke="#a5abb8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </el-icon>
-                      <span class="ml-4">2</span>
-                    </span>
-                  <template #dropdown>
-                    <el-dropdown-menu>
-                      <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
-                      <el-dropdown-item :icon="CirclePlusFilled">Action 2</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </template>
-                </el-dropdown>
+              <el-form-item class="mb-3 passengers">
+                <span class="mr-auto">Пассажиры</span>
+                <el-icon class="el-icon--right ml-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="7.71929" cy="4.85203" rx="3.18535" ry="3.18535" stroke="#a5abb8"
+                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M2.66676 12.4676C2.6659 12.2437 2.71598 12.0225 2.81321 11.8207C3.11832 11.2105 3.97873 10.8871 4.69269 10.7407C5.2076 10.6308 5.72962 10.5574 6.25486 10.521C7.22731 10.4356 8.20537 10.4356 9.17782 10.521C9.70302 10.5578 10.225 10.6312 10.74 10.7407C11.4539 10.8871 12.3144 11.18 12.6195 11.8207C12.815 12.2319 12.815 12.7093 12.6195 13.1205C12.3144 13.7613 11.4539 14.0542 10.74 14.1945C10.2257 14.3089 9.70348 14.3844 9.17782 14.4203C8.38633 14.4874 7.59114 14.4996 6.79796 14.4569C6.61489 14.4569 6.43793 14.4569 6.25486 14.4203C5.73117 14.3849 5.21096 14.3094 4.6988 14.1945C3.97873 14.0542 3.12442 13.7613 2.81321 13.1205C2.71648 12.9165 2.66645 12.6934 2.66676 12.4676Z"
+                          stroke="#a5abb8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </el-icon>
+                <span><el-input-number type="number" min="0" max="4" v-model="searchFormData.adult"/></span>
+                <el-icon class="el-icon--right ml-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="7.71929" cy="4.85203" rx="3.18535" ry="3.18535" stroke="#a5abb8"
+                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M2.66676 12.4676C2.6659 12.2437 2.71598 12.0225 2.81321 11.8207C3.11832 11.2105 3.97873 10.8871 4.69269 10.7407C5.2076 10.6308 5.72962 10.5574 6.25486 10.521C7.22731 10.4356 8.20537 10.4356 9.17782 10.521C9.70302 10.5578 10.225 10.6312 10.74 10.7407C11.4539 10.8871 12.3144 11.18 12.6195 11.8207C12.815 12.2319 12.815 12.7093 12.6195 13.1205C12.3144 13.7613 11.4539 14.0542 10.74 14.1945C10.2257 14.3089 9.70348 14.3844 9.17782 14.4203C8.38633 14.4874 7.59114 14.4996 6.79796 14.4569C6.61489 14.4569 6.43793 14.4569 6.25486 14.4203C5.73117 14.3849 5.21096 14.3094 4.6988 14.1945C3.97873 14.0542 3.12442 13.7613 2.81321 13.1205C2.71648 12.9165 2.66645 12.6934 2.66676 12.4676Z"
+                          stroke="#a5abb8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </el-icon>
+                <span><el-input-number type="number" min="0" max="3" v-model="searchFormData.children"/></span>
               </el-form-item>
             </el-col>
             <el-col>
-              <el-button class="btn-yellow w-full" type="warning" @click.prevent.stop="onSubmit">Поиск</el-button>
+              <el-button class="btn-yellow w-full" type="warning" @click.prevent.stop="onSearchTour">Поиск</el-button>
             </el-col>
           </el-row>
         </el-form>
       </template>
-      <template v-if="true">
+      <template v-if="contentFormData.show">
         <el-form :model="contentFormData" ref="contentForm" class="contentForm flex flex-wrap w-full mb-8">
+
+
           <div class="data-section w-full mb-3">
             <el-table :data="toursData" class="tours-table mb-8">
               <el-table-column prop="description" label="Описание тура" min-width="250"/>
@@ -127,12 +123,18 @@
               <el-table-column prop="days" label="Ночей" min-width="120"/>
             </el-table>
           </div>
+
+
+
           <div class="data-section w-full mb-3">
-            <div class="aln-table el-table--fit el-table--enable-row-hover el-table el-table--layout-fixed low-price-table is-scrolling-none">
+            <div
+                class="aln-table el-table--fit el-table--enable-row-hover el-table el-table--layout-fixed low-price-table is-scrolling-none">
               <div class="el-table__inner-wrapper">
                 <div class="el-table__header-wrapper">
                   <table class="el-table__header">
-                    <colgroup><col name="el-table_2_column_5" width="1000"></colgroup>
+                    <colgroup>
+                      <col name="el-table_2_column_5" width="1000">
+                    </colgroup>
                     <thead class="">
                     <tr class="">
                       <th class="el-table_2_column_5 is-leaf el-table__cell" colspan="1" rowspan="1">
@@ -156,17 +158,29 @@
                         <div class="cell">
                           <div class="flex items-center justify-center">
                             <el-button class="btn-text" type="text">
-                              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.25 7.66589L3.25 16.3349C3.25 19.3549 5.389 21.2499 8.416 21.2499L16.584 21.2499C19.611 21.2499 21.75 19.3649 21.75 16.3349L21.75 7.66589C21.75 4.63589 19.611 2.74989 16.584 2.74989L8.416 2.74989C5.389 2.74989 3.25 4.63589 3.25 7.66589Z" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8.41394 11.9999L16.5859 11.9999" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12.1777 15.7479L8.41373 11.9999L12.1777 8.25189" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M3.25 7.66589L3.25 16.3349C3.25 19.3549 5.389 21.2499 8.416 21.2499L16.584 21.2499C19.611 21.2499 21.75 19.3649 21.75 16.3349L21.75 7.66589C21.75 4.63589 19.611 2.74989 16.584 2.74989L8.416 2.74989C5.389 2.74989 3.25 4.63589 3.25 7.66589Z"
+                                      stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M8.41394 11.9999L16.5859 11.9999" stroke="#3D3D3D" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.1777 15.7479L8.41373 11.9999L12.1777 8.25189" stroke="#3D3D3D"
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
                             </el-button>
                             <el-button class="btn-text ml-1" type="text">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1393 16.3341V7.66509C21.1393 4.64509 19.0126 2.75009 16.003 2.75009H7.88191C4.87231 2.75009 2.74561 4.63509 2.74561 7.66509L2.74561 16.3341C2.74561 19.3641 4.87231 21.2501 7.88191 21.2501H16.003C19.0126 21.2501 21.1393 19.3641 21.1393 16.3341Z" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M16.0049 12.0001H7.87988" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12.2629 8.25209L16.0053 12.0001L12.2629 15.7481" stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M21.1393 16.3341V7.66509C21.1393 4.64509 19.0126 2.75009 16.003 2.75009H7.88191C4.87231 2.75009 2.74561 4.63509 2.74561 7.66509L2.74561 16.3341C2.74561 19.3641 4.87231 21.2501 7.88191 21.2501H16.003C19.0126 21.2501 21.1393 19.3641 21.1393 16.3341Z"
+                                      stroke="#3D3D3D" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M16.0049 12.0001H7.87988" stroke="#3D3D3D" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.2629 8.25209L16.0053 12.0001L12.2629 15.7481" stroke="#3D3D3D"
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
                             </el-button>
                           </div>
@@ -175,24 +189,26 @@
                     </tr>
                     </thead>
                     <tbody class="aln-table__body">
-                    <tr v-for="item of lowPriceData" :key="item.id">
+                    <tr v-for="(item, index) of lowPriceData" :key="item.id">
                       <td class="el-table__cell bg-milk w-28" style="min-width: 90px">
                         <div class="cell text-center font-medium">
                           {{ item.days }}
                         </div>
                       </td>
-                      <td v-if="item.amount" colspan="2" class="el-table__cell" style="padding: 0">
+                      <td v-if="index > 0" colspan="2" class="el-table__cell" style="padding: 0">
+                        <template v-if="item.amount > 0">
                         <div class="flex items-center justify-center">
-                                <span class="inline-block font-medium border-2 border-dashed border-black py-3 px-12">
+                                <span class="inline-block font-medium py-3 px-12 cursor-pointer" :class="(item.active) ? 'border-2 border-dashed border-black' : null" >
                                   {{ item.amount }}
                                 </span>
                         </div>
+                        </template>
                       </td>
                       <td v-else class="el-table__cell" colspan="2">
                         <div class="cell">
                           <div class="flex items-center justify-between">
                                   <span
-                                      v-for="(innerItem, index) of item.dateDeparture"
+                                      v-for="(innerItem, index) of dateDeparture"
                                       :key="`${innerItem}_${index}`"
                                       class="mx-4"
                                   >
@@ -253,8 +269,8 @@
               <el-table-column prop="status" label="" min-width="130"/>
               <el-table-column width="150">
                 <template #default='{row, $index}'>
-                  <el-button class="btn-yellow w-full" v-if="row.isDeleted" type="warning">Удалить</el-button>
-                  <el-button class="btn-blue w-full" v-else type="primary">Добавить</el-button>
+                  <el-button class="btn-yellow w-full" v-if="row.isDeleted" @click="toggleAdditional($index)" type="warning">Удалить</el-button>
+                  <el-button class="btn-blue w-full" v-else @click="toggleAdditional($index)" type="primary">Добавить</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -264,10 +280,10 @@
             <el-row :gutter="25">
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="MR/MRS/CHD/INF" :label-width="150">
-                  <el-select class="grow" placeholder="MRS">
+                  <el-select class="grow">
                     <el-option
-                        label="safdasd"
-                        value="asfasdas"
+                        label="MR"
+                        value="MR"
                     />
                   </el-select>
                 </el-form-item>
@@ -285,8 +301,8 @@
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Пол" :label-width="150">
                   <el-radio-group class="flex flex-nowrap items-center justify-start grow">
-                    <el-radio class="lg:mx-9 xl:mx-14" label="Муж" />
-                    <el-radio class="lg:mx-9 xl:mx-14" label="Жен" />
+                    <el-radio class="lg:mx-9 xl:mx-14" label="Муж"/>
+                    <el-radio class="lg:mx-9 xl:mx-14" label="Жен"/>
                   </el-radio-group>
                 </el-form-item>
               </el-col>
@@ -302,22 +318,22 @@
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Фамилия по-латински" :label-width="150">
-                  <el-input class="" placeholder="Фамилия по-латински" />
+                  <el-input class="" placeholder="Фамилия по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Серия документа" :label-width="150">
-                  <el-input class="" placeholder="Имя по-латински" />
+                  <el-input class="" placeholder="Имя по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Имя по-латински" :label-width="150">
-                  <el-input class="" placeholder="Имя по-латински" />
+                  <el-input class="" placeholder="Имя по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Номер документа" :label-width="150">
-                  <el-input class="" placeholder="Номер документа" />
+                  <el-input class="" placeholder="Номер документа"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
@@ -366,8 +382,8 @@
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Пол" :label-width="150">
                   <el-radio-group class="flex flex-nowrap items-center justify-start grow">
-                    <el-radio class="lg:mx-9 xl:mx-14" label="Муж" />
-                    <el-radio class="lg:mx-9 xl:mx-14" label="Жен" />
+                    <el-radio class="lg:mx-9 xl:mx-14" label="Муж"/>
+                    <el-radio class="lg:mx-9 xl:mx-14" label="Жен"/>
                   </el-radio-group>
                 </el-form-item>
               </el-col>
@@ -383,22 +399,22 @@
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Фамилия по-латински" :label-width="150">
-                  <el-input class="" placeholder="Фамилия по-латински" />
+                  <el-input class="" placeholder="Фамилия по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Серия документа" :label-width="150">
-                  <el-input class="" placeholder="Имя по-латински" />
+                  <el-input class="" placeholder="Имя по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Имя по-латински" :label-width="150">
-                  <el-input class="" placeholder="Имя по-латински" />
+                  <el-input class="" placeholder="Имя по-латински"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
                 <el-form-item class="items-center text-left mt-4 mb-0" label="Номер документа" :label-width="150">
-                  <el-input class="" placeholder="Номер документа" />
+                  <el-input class="" placeholder="Номер документа"/>
                 </el-form-item>
               </el-col>
               <el-col :lg="12">
@@ -426,10 +442,10 @@
               <div class="data-section w-full mt-5 mb-3">
                 <div class="data-section__title truncate">Информация о заказчике по общегражданскому паспорту</div>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="ФИО" :label-width="150">
-                  <el-input class="" placeholder="ФИО" />
+                  <el-input class="" placeholder="ФИО"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Адрес" :label-width="150">
-                  <el-input class="" placeholder="Адрес" />
+                  <el-input class="" placeholder="Адрес"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Дата рождения" :label-width="150">
                   <el-date-picker
@@ -439,10 +455,10 @@
                   />
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Серия паспорта" :label-width="150">
-                  <el-input class="" placeholder="Серия паспорта" />
+                  <el-input class="" placeholder="Серия паспорта"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Номер паспорта" :label-width="150">
-                  <el-input class="" placeholder="Номер паспорта" />
+                  <el-input class="" placeholder="Номер паспорта"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Дата выдачи" :label-width="150">
                   <el-date-picker
@@ -452,13 +468,13 @@
                   />
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Код подразделения" :label-width="150">
-                  <el-input class="" placeholder="Код подразделения" />
+                  <el-input class="" placeholder="Код подразделения"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="Мобильный телефон" :label-width="150">
-                  <el-input class="" placeholder="Мобильный телефон" />
+                  <el-input class="" placeholder="Мобильный телефон"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-3 mb-0" label="E-mail" :label-width="150">
-                  <el-input class="" placeholder="E-mail" />
+                  <el-input class="" placeholder="E-mail"/>
                 </el-form-item>
               </div>
             </el-col>
@@ -467,30 +483,30 @@
                 <div class="data-section__title">Примечание к заявке</div>
                 <el-form-item class="items-center text-left mt-4 mb-0">
                   <div class="flex items-center">
-                    <el-checkbox label="вместе с заявкой №" name="type" />
-                    <el-input class="ml-8" placeholder="" :disabled="true" />
+                    <el-checkbox label="вместе с заявкой №" name="type" v-model="alongApplication" />
+                    <el-input class="ml-8" placeholder="" :disabled="!alongApplication"/>
                   </div>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-checkbox label="молодожены" name="type" />
+                  <el-checkbox label="молодожены" name="type"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-checkbox label="вид на море" name="type" />
+                  <el-checkbox label="вид на море" name="type"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-checkbox label="тихое место" name="type" />
+                  <el-checkbox label="тихое место" name="type"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-checkbox label="постоянный гость отеля" name="type" />
+                  <el-checkbox label="постоянный гость отеля" name="type"/>
                 </el-form-item>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-checkbox label="люлька для младенца в номер" name="type" />
+                  <el-checkbox label="люлька для младенца в номер" name="type"/>
                 </el-form-item>
               </div>
               <div class="data-section w-full mt-12 mb-3">
                 <div class="data-section__title">Примечание к заявке</div>
                 <el-form-item class="items-center text-left mt-4 mb-0">
-                  <el-input type="textarea" :rows="3" />
+                  <el-input type="textarea" :rows="3"/>
                 </el-form-item>
               </div>
             </el-col>
@@ -500,13 +516,14 @@
             <div class="flex flex-col items-center">
               <div><b class="text-lg text-black">5000 USD</b></div>
               <el-form-item class="items-center text-left mt-3 mb-5">
-                <el-checkbox class="pp-text" name="type" label="Подтверждаю, что являюсь частным лицом." />
-                <a href="#" class="pp-text text-yellow hover-underline ml-6 md:ml-2 mt-1 sm:mt-0" style="line-height: 1.2">С договором согласен.</a>
+                <el-checkbox class="pp-text" name="type" label="Подтверждаю, что являюсь частным лицом."/>
+                <a href="#" class="pp-text text-yellow hover-underline ml-6 md:ml-2 mt-1 sm:mt-0"
+                   style="line-height: 1.2">С договором согласен.</a>
               </el-form-item>
             </div>
             <div class="flex items-center justify-center">
               <el-button class="btn-yellow" type="warning" size="large">Пересчитать</el-button>
-              <el-button class="btn-silver" type="info" size="large">Бронировать</el-button>
+              <el-button class="btn-silver" :disabled="disabledBtn" type="info" size="large">Бронировать</el-button>
             </div>
           </div>
         </el-form>
@@ -517,12 +534,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { AppModule } from "@/store/modules/app";
 
 export default defineComponent({
   name: 'Home',
   components: {},
   data: () => ({
-    searchFormData: {},
+    tariff: {
+      type: '',
+      show: true
+    },
+    searchFormData: {
+      departureDate: '' as string,
+      arrivalDate: '' as string,
+      adult: 2,
+      children: 0,
+      show: false
+    },
     toursData: [
       {
         id: 1,
@@ -532,41 +560,41 @@ export default defineComponent({
         days: 10
       }
     ],
-    contentFormData: {},
+    contentFormData: {
+      show: false
+    },
+    dateDeparture: [
+      '07 Май, Сб',
+      '08 Май, Вс',
+      '09 Май, Пн',
+      '10 Май, Вт',
+      '11 Май, Ср	',
+      '12 Май, Чт',
+      '13 Май, Пт'
+    ],
     lowPriceData: [
       {
         id: 1,
         days: null,
-        dateDeparture: [
-          '07 Май, Сб',
-          '08 Май, Вс',
-          '09 Май, Пн',
-          '10 Май, Вт',
-          '11 Май, Ср	',
-          '12 Май, Чт',
-          '13 Май, Пт'
-        ]
       },
       {
         id: 2,
         days: 8,
-        dateDeparture: null
       },
       {
         id: 3,
         days: 9,
-        dateDeparture: null
       },
       {
         id: 4,
         days: 10,
-        dateDeparture: null,
-        amount: 5000
+        amount: 5000,
+        active: true
       },
       {
         id: 5,
         days: 11,
-        dateDeparture: null
+        amount: null,
       }
     ],
     accommodationData: [
@@ -635,17 +663,34 @@ export default defineComponent({
         status: 'Без доплат',
         isDeleted: false
       }
-    ]
+    ],
+    disabledBtn: true,
+    alongApplication: false
   }),
   methods: {
-    onSubmit() {
-      console.log('submit')
+    onTariff(type) {
+      this.tariff.type = type
+      this.tariff.show = false
+      this.searchFormData.show = true
+    },
+    async onSearchTour() {
+      this.contentFormData.show = true
+      //console.log('submit')
+      await AppModule.getBron()
+    },
+    toggleAdditional(index: number){
+      this.additionalServicesData[index].isDeleted = !this.additionalServicesData[index].isDeleted
+    }
+  },
+  computed: {
+    bron(){
+      return AppModule.bron
     }
   }
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import 'src/assets/scss/utils/vars.scss';
 
 .searchForm {
@@ -677,6 +722,7 @@ export default defineComponent({
       line-height: 32px;
       outline: 0;
       border: none;
+
       span, i, svg {
         vertical-align: middle;
       }
@@ -686,20 +732,24 @@ export default defineComponent({
       }
     }
   }
+
   .el-button {
     font-weight: 500;
   }
 }
+
 .contentForm {
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .tariffs {
   max-width: 1420px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .tariff-card {
   position: relative;
   background-color: rgba(7, 87, 160, .8);
@@ -721,10 +771,36 @@ export default defineComponent({
     font-size: 96px;
     line-height: 1;
   }
+
   &__price {
     font-size: 48px;
     line-height: 50px;
     letter-spacing: -1.78px;
+  }
+}
+
+.passengers {
+  padding: 0 10px;
+  background-color: var(--el-input-bg-color,var(--el-fill-color-blank));
+  background-image: none;
+  border-radius: var(--el-input-border-radius,var(--el-border-radius-base));
+  transition: var(--el-transition-box-shadow);
+  box-shadow: 0 0 0 1px var(--el-input-border-color,var(--el-border-color)) inset;
+
+  .el-input-number {
+    width: auto !important;
+    min-width: 25px;
+    max-width: 40px;
+
+    .el-input-number__decrease, .el-input-number__increase {
+      display: none !important;
+    }
+
+    .el-input__wrapper {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      box-shadow: none !important;
+    }
   }
 }
 </style>

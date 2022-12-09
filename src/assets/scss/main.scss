@@ -108,6 +108,7 @@ ul, li {
   background-position: center;
   background-size: cover;
   padding-top: calc(180px + 40px);
+  min-height: calc(100vh - 200px);
 
   h1 {
     color: #fff;
